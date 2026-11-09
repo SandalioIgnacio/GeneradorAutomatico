@@ -1,41 +1,62 @@
-
 /* =========================================
-   VISOR DE CONTRASEÑAS - JeaDas.Insights
+   VISOR DE CONTRASEÑAS
+   JeaDas.Insights
    ========================================= */
 
-(() => {
+(function () {
   'use strict';
 
-  document.addEventListener('click', (event) => {
-    const boton = event.target.closest('[data-toggle-password]');
+  function inicializarVisor() {
 
-    if (!boton) return;
+    document.querySelectorAll('[data-toggle-password]')
+      .forEach(function (boton) {
 
-    const id = boton.dataset.togglePassword;
-    const campo = document.getElementById(id);
+        // Evitar registrar eventos duplicados
+        if (boton.dataset.visorInicializado === 'true') {
+          return;
+        }
 
-    if (!campo || campo.disabled) return;
+        boton.dataset.visorInicializado = 'true';
 
-    const mostrar = campo.type === 'password';
+        boton.addEventListener('click', function (event) {
 
-    campo.type = mostrar ? 'text' : 'password';
+          event.preventDefault();
+          event.stopPropagation();
 
-    boton.setAttribute(
-      'aria-pressed',
-      String(mostrar)
-    );
+          const idCampo = boton.getAttribute('data-toggle-password');
+          const campo = document.getElementById(idCampo);
 
-    boton.setAttribute(
-      'aria-label',
-      mostrar ? 'Ocultar contraseña' : 'Mostrar contraseña'
-    );
+          if (!campo) {
+            console.error('No se encontró el campo:', idCampo);
+            return;
+          }
 
-    boton.setAttribute(
-      'title',
-      mostrar ? 'Ocultar contraseña' : 'Mostrar contraseña'
-    );
+          // Alternar visibilidad
+          const mostrar = campo.type === 'password';
 
-    campo.focus({ preventScroll: true });
-  });
+          campo.type = mostrar ? 'text' : 'password';
+
+          boton.setAttribute('aria-pressed', String(mostrar));
+          boton.setAttribute(
+            'aria-label',
+            mostrar ? 'Ocultar contraseña' : 'Mostrar contraseña'
+          );
+
+          boton.setAttribute(
+            'title',
+            mostrar ? 'Ocultar contraseña' : 'Mostrar contraseña'
+          );
+
+        });
+
+      });
+  }
+
+  // Inicializar cuando el documento esté disponible
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', inicializarVisor);
+  } else {
+    inicializarVisor();
+  }
 
 })();
