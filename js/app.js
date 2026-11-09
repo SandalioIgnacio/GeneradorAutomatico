@@ -46,35 +46,6 @@ async function enviarLogin(e) {
     if (r.perfil && r.perfil.debe_cambiar_clave) mostrarCambio(); else await entrar();
   } catch (x) { err.textContent = msgError(x); } finally { $('btnLogin').disabled = false; }
 }
-
-const passwordInput = document.getElementById('password');
-const togglePasswordButton = document.getElementById('togglePassword');
-let timeoutId = null; // Guarda el temporizador activo
-
-togglePasswordButton.addEventListener('click', () => {
-  // Si ya hay un temporizador corriendo, lo cancelamos para reiniciar el conteo
-  if (timeoutId) {
-    clearTimeout(timeoutId);
-  }
-
-  // Alternar el tipo de input
-  if (passwordInput.type === 'password') {
-    passwordInput.type = 'text';
-    togglePasswordButton.textContent = '🙈'; // Cambia el icono a "ocultar"
-
-    // Ocultar automáticamente después de 4 segundos (4000 milisegundos)
-    timeoutId = setTimeout(() => {
-      passwordInput.type = 'password';
-      togglePasswordButton.textContent = '👁️';
-    }, 4000);
-
-  } else {
-    // Si el usuario hace clic manualmente antes de que termine el tiempo
-    passwordInput.type = 'password';
-    togglePasswordButton.textContent = '👁️';
-  }
-});
-
 async function enviarCambio(e) {
   e.preventDefault(); const err = $('errCambio'); err.textContent = '';
   if (!pintarReglas()) { err.textContent = 'La contraseña no cumple los requisitos.'; return; }
