@@ -43,7 +43,15 @@
     <h1>Ingresar</h1>
     <p class="lema">Usa el usuario y la contraseña que te dio tu administrador.</p>
     <div class="campo"><label for="usuario">Usuario</label><input id="usuario" autocomplete="username" autocapitalize="none" spellcheck="false" required></div>
-    
+
+<div class="campo">
+  <label for="clave">Contraseña</label>
+  <div style="position: relative; display: block; width: 100%;">
+    <input id="clave" type="password" autocomplete="current-password" required style="width: 100%; padding-right: 40px; box-sizing: border-box; display: block;">
+    <button type="button" class="toggle-password" data-target="clave" aria-label="Mostrar contraseña" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; padding: 0; margin: 0; line-height: 1; height: auto; z-index: 10;">👁️</button>
+  </div>
+</div>
+
     <!-- CAMBIO AQUÍ: Contenedor con botón integrado para el login -->
     <div class="campo">
       <label for="clave">Contraseña</label>
