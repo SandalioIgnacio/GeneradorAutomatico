@@ -295,3 +295,15 @@ dialog.modal.ancho{width:min(960px,calc(100vw - 24px))}
 @media (hover:none){.btn.xs{min-height:40px}}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
 @media print{.top,.tabs,.acciones,.pie{display:none}body{background:#fff;color:#000}}
+
+/* =========================================
+   VISOR DE CONTRASEÑAS - JeaDas.Insights
+   ========================================= */
+.password-wrapper {position: relative; width: 100%; display: flex; align-items: center;}
+.password-wrapper input {width: 100%; padding-right: 46px;}
+.btn-ver-clave {position: absolute; right: 8px; top: 50%; transform: translateY(-50%); width: 34px; height: 34px; padding: 7px; display: flex; align-items: center; justify-content: center;
+  border: none; background: transparent; color: #64748b; cursor: pointer; border-radius: 6px; z-index: 2;}
+.btn-ver-clave:hover {background: rgba(19, 35, 90, 0.08); color: #13235A;}
+.btn-ver-clave:focus-visible {outline: 2px solid #3157B7; outline-offset: 2px;}
+.btn-ver-clave svg {width: 21px; height: 21px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; pointer-events: none;
+}
